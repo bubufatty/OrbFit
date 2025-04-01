@@ -789,7 +789,10 @@ SUBROUTINE oss_dif2(xast,xea,tobs,iobscod,obs4,ider,dobdx,      &
   ELSEIF(iaber.eq.2)THEN
      CALL aber2(d,xast,xobsea,dcor) 
   ENDIF
-  d=dcor
+  ! TO handle the situation of iaber == 0
+  IF(iaber.ne.0)
+    d=dcor
+  ENDIF
   dis0=vsize(d) 
   dc=d(1:3)+xo(1:3)
   dc_s=vsize(dc)
